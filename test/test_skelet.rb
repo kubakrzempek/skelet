@@ -15,9 +15,10 @@ class TestSkelet < Minitest::Test
   end
   
   def test_created_skeleton_tree()
-    Dir.mkdir("testdir")
-    Dir.chdir("testdir") do
-      @skelet.create_skeleton
+    @skelet.create_skeleton
+    assert_equal true, Dir.exist?(@skelet.name)
+    
+    Dir.chdir(@skelet.name) do
       entries = []
       Dir.entries(Dir.pwd).each do |entry|
         entries << entry unless entry=~/\.{1,2}/
@@ -40,6 +41,6 @@ class TestSkelet < Minitest::Test
   end
     
   def teardown
-    FileUtils.rm_rf('testdir')
+    FileUtils.rm_rf(@skelet.name)
   end 
  end
