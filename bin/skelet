@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'skelet'
+@skelet=Skelet::Application.new(ARGV[0])
+@skelet.create_skeleton
