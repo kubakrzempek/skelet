@@ -1,3 +1,5 @@
+require_relative 'skelet/files'
+
 module Skelet
   class Application
     PERM = 'w+'  
@@ -10,13 +12,14 @@ module Skelet
     def create_skeleton
       Dir.mkdir(@name)
       Dir.chdir(@name) do
+        File.open("#{@name}.gemspec", PERM) {|f| f << Skelet::gemspec(@name)}
         ["bin", "lib", "test", "lib/#{@name}"].each do |entry|
           Dir.mkdir(entry)
         end
-        Dir.chdir('test') { File.new("test_#{@name}.rb", PERM) }
-        Dir.chdir('bin') { File.new(@name, PERM) }
-        Dir.chdir("lib") { File.new("#{@name}.rb", PERM) }
-        Dir.chdir("lib/#{name}") { File.new("version.rb", PERM) }
+        Dir.chdir('test') { File.open("test_#{@name}.rb", PERM) {|f| f << Skelet::test(@name)}}
+        Dir.chdir('bin') { File.open(@name, PERM) {|f| f << Skelet::bin(@name)} }
+        Dir.chdir("lib") { File.open("#{@name}.rb", PERM) {|f| f << Skelet::main(@name)} }
+        Dir.chdir("lib/#{name}") { File.open("version.rb", PERM) {|f| f << Skelet::version } }
        end
       rescue
          puts "#{@name} folder already exists. Please choose another location or project name"

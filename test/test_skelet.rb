@@ -19,6 +19,7 @@ class TestSkelet < Minitest::Test
     assert_equal true, Dir.exist?(@skelet.name)
     
     Dir.chdir(@skelet.name) do
+      assert_equal true, File.exist?("#{@skelet.name}.gemspec")
       entries = []
       Dir.entries(Dir.pwd).each do |entry|
         entries << entry unless entry=~/\.{1,2}/
@@ -41,6 +42,6 @@ class TestSkelet < Minitest::Test
   end
     
   def teardown
-    FileUtils.rm_rf(@skelet.name)
+    #FileUtils.rm_rf(@skelet.name)
   end 
  end

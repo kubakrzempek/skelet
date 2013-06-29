@@ -1,16 +1,16 @@
 #-*- encoding utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "skelet/version"
+require "new_gem/version"
 
 Gem::Specification.new do |s|
-  s.name = "skelet"
-  s.version = Skelet::VERSION
-  s.platform = Gem::Platform::RUBY
-  s.authors = ["Kuba Krzempek"]
-  s.email = ["kubakrzempek@gmail.com"]
-  s.homepage = ""
-  s.summary = "Application's skeleton generator"
-  s.description = "Simply generates a skeleton for an app"
+  s.name = "new_gem"
+  s.version = New_gem::VERSION
+  s.platform = Gem::Platform::Ruby
+  s.authors = [Kuba Krzempek]
+  s.email = [kubakrzempek@gmail.com]
+  s.homepage = "TODO"
+  s.summary = "TODO"
+  s.description = "TODO"
   
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
