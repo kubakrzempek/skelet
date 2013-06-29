@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "skelet/version"
 
-Gem::Specification do |s|
+Gem::Specification.new do |s|
   s.name = "skelet"
   s.version = Skelet::VERSION
   s.platform = Gem::Platform::RUBY
