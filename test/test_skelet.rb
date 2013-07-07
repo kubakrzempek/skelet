@@ -6,18 +6,18 @@ include Skelet
 class TestSkelet < Minitest::Test
   def setup
     @skelet=Skelet::Application.new("new_gem")
+    @skelet.create_skeleton
   end
-  
+
   def test_name()
     assert_equal "new_gem", @skelet.name
     assert_respond_to @skelet, :name
     refute_respond_to @skelet, :name=
   end
-  
+
   def test_created_skeleton_tree()
-    @skelet.create_skeleton
     assert_equal true, Dir.exist?(@skelet.name)
-    
+
     Dir.chdir(@skelet.name) do
       assert_equal true, File.exist?("#{@skelet.name}.gemspec")
       entries = []
@@ -40,8 +40,8 @@ class TestSkelet < Minitest::Test
       end
     end
   end
-    
+
   def teardown
-    #FileUtils.rm_rf(@skelet.name)
-  end 
+    FileUtils.rm_rf(@skelet.name)
+  end
  end

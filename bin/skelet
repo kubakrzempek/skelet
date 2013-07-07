@@ -1,5 +1,26 @@
 #!/usr/bin/env ruby
 
+#Create an application skeleton - files included - with one command.
+#
+#
+#Example:
+# >> skelet myapp
+#creates the following skeleton
+#
+#myapp
+#├── bin
+#│    └── skelet
+#├── lib
+#│    └── myapp
+#│    │   └── version.rb
+#│    └── myapp.rb
+#├── test
+#│    └── test_myapp.rb
+#└── myapp.gemspec
+#
+#The files within are already filled with some basic information allowing to speed up creation.
+#For now it assumes using git and minitest.
+#
+$:.push File.expand_path("../../lib", __FILE__)
 require 'skelet'
-@skelet=Skelet::Application.new(ARGV[0])
-@skelet.create_skeleton
+Skelet::Application.new(ARGV[0]).create_skeleton
